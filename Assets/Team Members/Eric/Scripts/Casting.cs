@@ -12,9 +12,6 @@ public class Casting : MonoBehaviour
     public List<int> summonCubeSpell = new List<int>();
     public GameObject testingCube;
 
-    //testing purposes **
-    public Transform cubeSpawnLoc;
-    public float cubeSpeed = 100f;
 
     // Start is called before the first frame update
     void Start()
@@ -68,11 +65,8 @@ public class Casting : MonoBehaviour
     {
         if(spellName == "SpawnCube")
         {
-            //Instantiate(testingCube, gameObject.transform.position, Quaternion.identity);
-
-            //testing purposes**
-            GameObject spell = Instantiate(testingCube, cubeSpawnLoc.position, cubeSpawnLoc.rotation);
-            spell.GetComponent<Rigidbody>().velocity = spell.transform.forward * cubeSpeed;
+            Instantiate(testingCube, gameObject.transform.position, Quaternion.identity);
+        
         }
 
     

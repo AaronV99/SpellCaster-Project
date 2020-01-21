@@ -7,7 +7,7 @@ public class CastingHand : MonoBehaviour
 {
     public GameObject self, castingPlane;
     int HandID;
-    float gripPress;
+    float gripPress, resetTImer = 0.5f;
     bool castButtonPress, triggerTouch;
     static bool castButtonPress_all;
     public bool isCasting;
@@ -77,14 +77,29 @@ public class CastingHand : MonoBehaviour
             castButtonPress_all = false;
         }
 
-        if (!castButtonPress_all && castingPlane.activeSelf)
+        resetTImer -= Time.deltaTime;
+
+        if (resetTImer <= 0f)
         {
-            foreach (GameObject node in GameObject.FindGameObjectsWithTag("CastingNode"))
+            if (!castButtonPress_all && castingPlane.activeSelf)
             {
-                node.GetComponent<NodeTriggerDetect>().NodeReset();                
+                foreach (GameObject node in GameObject.FindGameObjectsWithTag("CastingNode"))
+                {
+                    node.GetComponent<NodeTriggerDetect>().NodeReset();
+                }
+                castingPlane.SetActive(false);
+
             }
-            castingPlane.SetActive(false);    
-            
+            //print("Timer Reset");
+            resetTImer = 0.5f;
+        }
+
+        if(gripPress >= 0.5 /*&& gameObject.GetComponentInParent<OVRGrabber>().isGrabbing == false*/)
+        {
+            gameObject.GetComponentInParent<Telekinesis>().PullObject();
+        } else if( gripPress <= 0.5f && gameObject.GetComponentInParent<Telekinesis>().isPulling == true)
+        {
+            gameObject.GetComponentInParent<Telekinesis>().DropObject();
         }
     }
 
