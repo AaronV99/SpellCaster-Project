@@ -8,12 +8,16 @@ TagManager:
   - Boss
   - Restricted
   - Finger
-  - Gate
   - Character
   - CastingNode
   - HandL
   - HandR
   - Spell
+  - TelekinesisIcon
+  - Grabbable
+  - Enemy_weapon
+  - Target
+  - Waypoint
   layers:
   - Default
   - TransparentFX
@@ -26,7 +30,7 @@ TagManager:
   - Grabbable
   - Player
   - Spell
-  - 
+  - Agent
   - 
   - 
   - 
