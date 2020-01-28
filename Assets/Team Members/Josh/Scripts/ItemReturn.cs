@@ -21,6 +21,7 @@ public class ItemReturn : MonoBehaviour
         if (objGrabbed.isGrabbed == true)
         {
             slotRenderer.enabled = true;
+            this.gameObject.transform.parent = null;
             this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         }
     }
@@ -33,14 +34,15 @@ public class ItemReturn : MonoBehaviour
         }
     }
 
-    //method for delay (or could just use Invoke)
+    
     IEnumerator ObjectReturn()
     {
         yield return new WaitForSeconds(1);
         slotRenderer.enabled = false;
         gameObject.transform.position = slot.transform.position;
         gameObject.transform.rotation = slot.transform.rotation;
-        this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
+        gameObject.transform.parent = slot.transform;
+        //this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePosition | RigidbodyConstraints.FreezeRotation;
     }
 
 
