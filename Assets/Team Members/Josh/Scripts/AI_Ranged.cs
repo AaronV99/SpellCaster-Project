@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(Agent))]
 
 public class AI_Ranged : MonoBehaviour
 {
     Agent agent;
+    NavMeshAgent randomDistance;
     Transform player;
     Transform target;
 
@@ -29,6 +31,11 @@ public class AI_Ranged : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player").transform;
         target = GameObject.FindGameObjectWithTag("Target").transform;
         animator = GetComponent<Animator>();
+
+
+        //random stopping distance
+        randomDistance = GetComponent<NavMeshAgent>();
+        randomDistance.stoppingDistance = Random.Range(13, 20);
     }
 
     // Update is called once per frame
