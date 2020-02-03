@@ -1738,6 +1738,7 @@ GameObject:
   - component: {fileID: 2008165181996691705}
   - component: {fileID: 2008165182005912435}
   - component: {fileID: 2008165182005868869}
+  - component: {fileID: 3906189293813514566}
   m_Layer: 0
   m_Name: RightHand
   m_TagString: Untagged
@@ -1815,6 +1816,21 @@ MonoBehaviour:
   m_controller: 2
   m_animator: {fileID: 1914020200029196201}
   m_defaultGrabPose: {fileID: 11437176, guid: 35525acb4c3b75c4a8c4dc2c117427be, type: 3}
+--- !u!114 &3906189293813514566
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2008165181999872683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1bb841baa1426a46a04eef5215d0c70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  self: {fileID: 2008165181999872683}
+  castingPlane: {fileID: 0}
+  isCasting: 0
 --- !u!1 &2008165181999874467
 GameObject:
   m_ObjectHideFlags: 0
@@ -2858,6 +2874,7 @@ GameObject:
   - component: {fileID: 6881835269384587136}
   - component: {fileID: 6881835269387034352}
   - component: {fileID: 6881835269387012276}
+  - component: {fileID: 3124389294254853766}
   m_Layer: 0
   m_Name: LeftHand
   m_TagString: Untagged
@@ -2935,6 +2952,21 @@ MonoBehaviour:
   m_controller: 1
   m_animator: {fileID: 6832144069593251596}
   m_defaultGrabPose: {fileID: 11437176, guid: 35525acb4c3b75c4a8c4dc2c117427be, type: 3}
+--- !u!114 &3124389294254853766
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6881835269381498468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1bb841baa1426a46a04eef5215d0c70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  self: {fileID: 6881835269381498468}
+  castingPlane: {fileID: 0}
+  isCasting: 0
 --- !u!1 &6881835269381501386
 GameObject:
   m_ObjectHideFlags: 0
@@ -5256,7 +5288,7 @@ GameObject:
   - component: {fileID: 7728914768144678028}
   m_Layer: 9
   m_Name: Player_basement
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5537,11 +5569,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7728914768145096875}
     m_Modifications:
-    - target: {fileID: 5520784010994849220, guid: 6afa6fd8c1c54d440add4a1cd7c5362a,
-        type: 3}
-      propertyPath: m_Name
-      value: TransitionSceneCanvas
-      objectReference: {fileID: 0}
     - target: {fileID: 5520784010994849223, guid: 6afa6fd8c1c54d440add4a1cd7c5362a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -5646,6 +5673,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5520784010994849220, guid: 6afa6fd8c1c54d440add4a1cd7c5362a,
+        type: 3}
+      propertyPath: m_Name
+      value: TransitionSceneCanvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6afa6fd8c1c54d440add4a1cd7c5362a, type: 3}

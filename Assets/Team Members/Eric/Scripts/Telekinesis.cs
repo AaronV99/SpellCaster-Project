@@ -39,7 +39,7 @@ public class Telekinesis : MonoBehaviour
             }
 
             TargetDistance = hit.distance;
-            print(TargetDistance + " " + hit.collider.gameObject.name);
+            //print(TargetDistance + " " + hit.collider.gameObject.name);
         }
         
 

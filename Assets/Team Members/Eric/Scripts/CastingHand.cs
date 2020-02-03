@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class CastingHand : MonoBehaviour
 {
-    public GameObject self, castingPlane;
+    public GameObject self, castPrefab, planeDummy;
+    GameObject castingPlane;
     int HandID;
     float gripPress, resetTImer = 0.5f;
     bool castButtonPress, triggerTouch;
@@ -43,11 +44,17 @@ public class CastingHand : MonoBehaviour
                 if (gripPress >= 0.7f && castButtonPress && triggerTouch != true)
                 {
                     isCasting = true;
+                    if (castingPlane == null)
+                    {
+                        castingPlane = Instantiate(castPrefab, planeDummy.transform.position, planeDummy.transform.rotation) as GameObject;
+                    }
                     //print("Casting Right=" + isCasting);
-                } else { 
+                }
+                else { 
                     isCasting = false;
                     
                 }
+
                 break;
 
             case 1:        
@@ -55,9 +62,16 @@ public class CastingHand : MonoBehaviour
                 castButtonPress = OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.LTouch);
                 triggerTouch = (OVRInput.Get(OVRInput.Touch.PrimaryIndexTrigger, OVRInput.Controller.LTouch));
                 if (gripPress >= 0.7f && castButtonPress && triggerTouch != true){
+
+                    if (castingPlane == null)
+                    {
+                        castingPlane = Instantiate(castPrefab, planeDummy.transform.position, planeDummy.transform.rotation) as GameObject;
+                    }
+
                     isCasting = true;
                     //print("Casting Left=" + isCasting);
-                } else {
+                } else if(!castButtonPress) {
+
                     isCasting = false;
                     
                 }
@@ -68,33 +82,38 @@ public class CastingHand : MonoBehaviour
                 break;
         }
        
-        if (OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.LTouch) || OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.RTouch))
-        {
-            castButtonPress_all = true;
-            castingPlane.SetActive(true);
-        }else if(!OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.LTouch) || !OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.RTouch))
-        {
-            castButtonPress_all = false;
-        }
+
+        //if (OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.LTouch) || OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.RTouch))
+        //{
+        //    if (castingPlane == null)
+        //    {
+        //        castButtonPress_all = true;
+        //        castingPlane = Instantiate(castPrefab, self.transform.position, self.transform.rotation) as GameObject;
+        //    }
+        //}else if(!OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.LTouch) || !OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.RTouch))
+        //{
+        //    castButtonPress_all = false;
+        //}
 
         resetTImer -= Time.deltaTime;
 
         if (resetTImer <= 0f)
         {
-            if (!castButtonPress_all && castingPlane.activeSelf)
+            if (!isCasting && castingPlane != null)
             {
                 foreach (GameObject node in GameObject.FindGameObjectsWithTag("CastingNode"))
                 {
                     node.GetComponent<NodeTriggerDetect>().NodeReset();
                 }
-                castingPlane.SetActive(false);
+                Destroy(castingPlane);
+
 
             }
             //print("Timer Reset");
             resetTImer = 0.5f;
         }
 
-        if(gripPress >= 0.5 /*&& gameObject.GetComponentInParent<OVRGrabber>().isGrabbing == false*/)
+        if(gripPress >= 0.5 && isCasting == false)
         {
             gameObject.GetComponentInParent<Telekinesis>().PullObject();
         } else if( gripPress <= 0.5f && gameObject.GetComponentInParent<Telekinesis>().isPulling == true)

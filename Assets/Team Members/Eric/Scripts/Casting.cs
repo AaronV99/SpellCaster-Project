@@ -66,7 +66,7 @@ public class Casting : MonoBehaviour
         if(spellName == "SpawnCube")
         {
             Instantiate(testingCube, gameObject.transform.position, Quaternion.identity);
-        
+            print("Spawned a cube");
         }
 
     
