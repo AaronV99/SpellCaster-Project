@@ -47,10 +47,12 @@ public class Telekinesis : MonoBehaviour
 
     public void PullObject()
     {
-
-        targetObject.GetComponent<Rigidbody>().isKinematic = true;
-        targetObject.transform.position = Vector3.MoveTowards(targetObject.transform.position, dummy.transform.position, speed * Time.deltaTime);
-        isPulling = true;
+        if (targetObject != null)
+        {
+            targetObject.GetComponent<Rigidbody>().isKinematic = true;
+            targetObject.transform.position = Vector3.MoveTowards(targetObject.transform.position, dummy.transform.position, speed * Time.deltaTime);
+            isPulling = true;
+        }
     }
 
     public void DropObject()
