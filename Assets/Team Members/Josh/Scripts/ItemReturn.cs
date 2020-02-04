@@ -24,6 +24,10 @@ public class ItemReturn : MonoBehaviour
             this.gameObject.transform.parent = null;
             this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
         }
+        else
+        {
+            slotRenderer.enabled = false;
+        }
     }
 
     void OnCollisionEnter(Collision collision)
