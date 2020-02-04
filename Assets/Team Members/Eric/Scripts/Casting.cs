@@ -6,12 +6,18 @@ public class Casting : MonoBehaviour
 {
     public GameObject[] node;
     public List<int> sequence = new List<int>();
+    bool cast;
 
     //Testing Variables
-    int sequenceCompletion = 0;
+    public int cubeCompletion, testOneCompletion, testTwoCompletion, testThreeCompletion;
     public List<int> summonCubeSpell = new List<int>();
-    public GameObject testingCube;
+    public List<int> testOne = new List<int>();
+    public List<int> testTwo = new List<int>();
+    public List<int> testThree = new List<int>();
 
+    public GameObject testingCube, testingOne, testingTwo, testingThree;
+
+    //End of Testing Variables;
 
     // Start is called before the first frame update
     void Start()
@@ -45,22 +51,74 @@ public class Casting : MonoBehaviour
     {
         for(int i = 0; i < sequence.Count; i++)
         {
-            if (sequence.Contains(nodeID) && summonCubeSpell.Contains(nodeID))
+            //Testing spell 0
+            if (sequence.Contains(nodeID) && summonCubeSpell.Contains(nodeID)) //Testing spell 0
             {
-                sequenceCompletion++;
+                cubeCompletion++; 
+            }
+            
+            if (sequence.Contains(nodeID) && testOne.Contains(nodeID)) //Testing spell 1
+            {
+                testOneCompletion++;
+            }
 
-                //Testing Purposes
-                if(sequenceCompletion == summonCubeSpell.Count)
-                {
-                    CastSpell("SpawnCube");
-                }
-                //Testing Purposes
+            if (sequence.Contains(nodeID) && testTwo.Contains(nodeID)) //Testing spell 2
+            {
+                testTwoCompletion++;
+            }
+
+            if (sequence.Contains(nodeID) && testThree.Contains(nodeID)) //Testing spell 3
+            {
+                testThreeCompletion++;
             }
         }
-        sequenceCompletion = 0;
-
+        CheckCompletion();
+       
     }
 
+    public void CheckCompletion()
+    {
+        //Testing Purposes
+        if (cubeCompletion > testOneCompletion && cubeCompletion > testTwoCompletion && cubeCompletion > testThreeCompletion && !cast)
+        {
+            float n = 0.7f * summonCubeSpell.Count;
+
+            if (cubeCompletion >= n)
+            {
+                CastSpell("SpawnCube");
+                cast = true;
+            }
+        }
+        else if (testOneCompletion > cubeCompletion && testOneCompletion > testTwoCompletion && testOneCompletion > testThreeCompletion && !cast)
+        {
+            float n = 0.7f * testOne.Count;
+            if (testOneCompletion >= n)
+            {
+                CastSpell("TestOne");
+                cast = true;
+            }
+        }
+        else if (testTwoCompletion > cubeCompletion && testTwoCompletion > testOneCompletion && testTwoCompletion > testThreeCompletion && !cast)
+        {
+            float n = 0.7f * testTwo.Count;
+            if (testTwoCompletion >= n)
+            {
+                CastSpell("TestTwo");
+                cast = true;
+            }
+        }
+        else if (testThreeCompletion > cubeCompletion && testThreeCompletion > testOneCompletion && testThreeCompletion > testTwoCompletion && !cast)
+        {
+            float n = 0.7f * testThree.Count;
+            if (testThreeCompletion >= n)
+            {
+                CastSpell("TestThree");
+                cast = true;
+            }
+        }
+        //Testing Purposes
+
+    }
     public void CastSpell(string spellName)
     {
         if(spellName == "SpawnCube")
@@ -69,7 +127,23 @@ public class Casting : MonoBehaviour
             print("Spawned a cube");
         }
 
-    
+        if(spellName == "TestOne")
+        {
+            Instantiate(testingOne, gameObject.transform.position, Quaternion.identity);
+            print("Spawned a One");
+        }
+
+        if (spellName == "TestTwo")
+        {
+            Instantiate(testingTwo, gameObject.transform.position, Quaternion.identity);
+            print("Spawned a Two");
+        }
+
+        if (spellName == "TestThree")
+        {
+            Instantiate(testingThree, gameObject.transform.position, Quaternion.identity);
+            print("Spawned a Three");
+        }
+
     }
-    //Note to self: Currently only works with the one spell. Need to make it more dynamic so that it can detect which spell is being cast; Possibly look into Jagged Arrays (an Array of Arrays);
 }
