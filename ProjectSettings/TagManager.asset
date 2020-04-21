@@ -19,6 +19,10 @@ TagManager:
   - Target
   - Waypoint
   - Fire
+<<<<<<< Updated upstream
+=======
+  - Staff
+>>>>>>> Stashed changes
   layers:
   - Default
   - TransparentFX

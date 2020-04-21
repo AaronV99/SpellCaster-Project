@@ -8,7 +8,7 @@ public class CastingHand : MonoBehaviour
     public GameObject self, castPrefab, planeDummy;
     GameObject castingPlane;
     int HandID;
-    float gripPress, resetTImer = 0.5f;
+    float gripPress, resetTimer = 0.5f;
     bool castButtonPress, triggerTouch;
     static bool castButtonPress_all;
     public bool isCasting;
@@ -95,9 +95,9 @@ public class CastingHand : MonoBehaviour
         //    castButtonPress_all = false;
         //}
 
-        resetTImer -= Time.deltaTime;
+        resetTimer -= Time.deltaTime;
 
-        if (resetTImer <= 0f)
+        if (resetTimer <= 0f)
         {
             if (!isCasting && castingPlane != null)
             {
@@ -110,7 +110,7 @@ public class CastingHand : MonoBehaviour
 
             }
             //print("Timer Reset");
-            resetTImer = 0.5f;
+            resetTimer = 0.5f;
         }
 
         if(gripPress >= 0.5 && isCasting == false)
