@@ -18,6 +18,7 @@ TagManager:
   - Enemy_weapon
   - Target
   - Waypoint
+  - Fire
   layers:
   - Default
   - TransparentFX
@@ -31,7 +32,7 @@ TagManager:
   - Player
   - Spell
   - Agent
-  - 
+  - Target
   - 
   - 
   - 

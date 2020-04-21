@@ -5,33 +5,46 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 public class healthScript : MonoBehaviour
 {
-    public float health = 100;
-    public float damageMultiplier = 1;
-    public Image UIbar;
-    public bool destroyAfterDie = false;
-    public GameObject gameOverUI;
+    [SerializeField] float health;
+    public float maxHealth = 100f;
+
+    public Slider slider;
+
+    //public bool DestroyAtZero = false;
+
+    //public GameObject gameOverUI;
+
+    void Start()
+    {
+        health = maxHealth;
+    }
+
+    private void Update()
+    {
+        if(health <= 0 )
+        {
+            Destroy(gameObject);
+            //GameOver();
+        }
+    }
+
 
     public void damage(float damagePoints)
     {
-        if (health- damagePoints * damageMultiplier >= 0)
+        if (health >= 0)
         {
-            health -= damagePoints * damageMultiplier;
-            if (UIbar != null)
+            health -= damagePoints;
+
+            if (slider != null)
             {
-                UIbar.fillAmount = health / 100;
+                slider.value = health;
             }
         }
-        else 
-        {
-            if (gameOverUI != null)
-            {
-                gameOverUI.SetActive(true);
-            }
-
-            if (destroyAfterDie)
-                Destroy(gameObject);
-        }
-
-        
     }
+
+    //void GameOver()
+    //{
+
+
+    //}
 }
