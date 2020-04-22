@@ -19,6 +19,7 @@ TagManager:
   - Target
   - Waypoint
   - Fire
+  - Staff
   layers:
   - Default
   - TransparentFX
@@ -28,11 +29,11 @@ TagManager:
   - UI
   - 
   - 
-  - Grabbable
-  - Player
-  - Spell
-  - Agent
-  - Target
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
