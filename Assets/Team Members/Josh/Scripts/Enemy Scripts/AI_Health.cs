@@ -14,16 +14,23 @@ public class AI_Health : MonoBehaviour
     private bool isDead = false;
 
     public Slider slider;
+    public GameObject healthCanvas;
 
     public GameObject damageNumbersPrefab;
 
     private Animator anim;
 
+    Agent agent;
+
 
 
     void Start()
     {
+        SetCollidersState(false);
+        SetRigidbodyState(true);
+
         anim = GetComponent<Animator>();
+        agent = GetComponent<Agent>();
 
         currentHealth = maxHealth;
         slider.maxValue = maxHealth;
@@ -76,9 +83,45 @@ public class AI_Health : MonoBehaviour
     {
         isDead = true;
 
+        agent.agent.speed = 0;
+
+        healthCanvas.SetActive(false);
+
         spawnManagerV3.EnemiesAlive--;
 
-        Destroy(gameObject);
+        anim.enabled = false;
+
+        SetCollidersState(true);
+        SetRigidbodyState(false);
+
+        Destroy(gameObject, 3f);
+    }
+
+
+    //get all rigidbodies and set state to true/false
+    void SetRigidbodyState(bool state)
+    {
+        Rigidbody[] rigidbodies = GetComponentsInChildren<Rigidbody>();
+        
+        foreach(Rigidbody rigidbody in rigidbodies)
+        {
+            rigidbody.isKinematic = state;
+        }
+
+        //GetComponent<Rigidbody>().isKinematic = !state;
+    }
+
+
+    //get all colliders and set state to true/false
+    void SetCollidersState(bool state)
+    {
+        Collider[] colliders = GetComponentsInChildren<Collider>();
+
+        foreach (Collider collider in colliders)
+        {
+            collider.enabled = state;
+        }
+        GetComponent<Collider>().enabled = !state;
     }
 
 
