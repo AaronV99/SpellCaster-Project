@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Team Members/Aaron/DefenceOne.unity
     guid: a9acf3368850ce74fb80097edb8e043a
+  - enabled: 1
+    path: Assets/Team Members/Yamil/Castle.unity
+    guid: c31bf36fd1ee4634c9111646a2da5c35
   m_configObjects: {}

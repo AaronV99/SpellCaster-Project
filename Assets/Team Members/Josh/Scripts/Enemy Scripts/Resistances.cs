@@ -9,9 +9,11 @@ public class Resistances : ScriptableObject
     [System.Serializable]
     public struct Resistance
     {
-
+        [Tooltip("Choose the damage type of which enemies will receive damage from")]
         public DamageType damageType;
-        public int damageToTake;
+
+        [Tooltip("The percent amount that enemies will receive from a damage type. example: 80 will result in the spell/attack/damage type doing 20% less damage")]
+        public int percentDamageToTake;
 
     }
 
@@ -24,7 +26,8 @@ public class Resistances : ScriptableObject
         {
             if(resistances[i].damageType == damageType)
             {
-                return ((damage * resistances[i].damageToTake) / 100);
+                //calculating damage
+                return ((damage * resistances[i].percentDamageToTake) / 100);
             }
         }
         return 0;

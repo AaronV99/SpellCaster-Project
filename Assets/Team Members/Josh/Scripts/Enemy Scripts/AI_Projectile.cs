@@ -21,5 +21,6 @@ public class AI_Projectile : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        Destroy(gameObject, 5f);
     }
 }
