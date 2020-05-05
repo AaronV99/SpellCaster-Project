@@ -113,13 +113,14 @@ public class CastingHand : MonoBehaviour
             resetTImer = 0.5f;
         }
 
-        if(gripPress >= 0.5 && isCasting == false)
-        {
-            gameObject.GetComponentInParent<Telekinesis>().PullObject();
-        } else if( gripPress <= 0.5f && gameObject.GetComponentInParent<Telekinesis>().isPulling == true)
-        {
-            gameObject.GetComponentInParent<Telekinesis>().DropObject();
-        }
+        ////From previous telekinesis mechanic. Discarted
+        //if(gripPress >= 0.5 && isCasting == false)
+        //{
+        //    gameObject.GetComponentInParent<Telekinesis>().PullObject();
+        //} else if( gripPress <= 0.5f && gameObject.GetComponentInParent<Telekinesis>().isPulling == true)
+        //{
+        //    gameObject.GetComponentInParent<Telekinesis>().DropObject();
+        //}
     }
 
     

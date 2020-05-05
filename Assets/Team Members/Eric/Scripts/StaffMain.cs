@@ -4,19 +4,28 @@ using UnityEngine;
 
 public class StaffMain : MonoBehaviour
 {
-    public GameObject self, staff, dummy, projectile, spawnDummy;
+    public GameObject self, staff, dummy, projectile, spawnDummy, spellEffect, collisionEffect;
     Vector3 scaleStart = new Vector3(0.5f,0.5f,0.5f), scaleTarget = new Vector3(1,1,1);
 
-    bool isGrabbingStaff, touchingStaff, scaleGateUp;
-    float gripPress, triggerPress, staffChargeRate, staffChargeRateMax, growthSpeed = 1;
-    public float staffCharge;
-    int HandID;
+    GameObject particleSpawned;
+    bool isGrabbingStaff, touchingStaff, scaleGateUp, cooldownStart, canAttack = true;
+    float gripPress, triggerPress, growthSpeed = 1;
+    public float attackCooldown, attackCooldownMax;
+    int HandID, damage;
+    [SerializeField]DamageType damageType;
+
+    // Spherecast stuff
+    public float rayRadius, maxDistance;
+    public GameObject hitObject;
+    public LayerMask layerMask;
+
+    Vector3 origin, direction;
+    float hitDistance;
 
     // Start is called before the first frame update
     void Start()
     {
-        staffChargeRate = 2;
-        staffChargeRateMax = 6;
+        damage = 10;
 
         //Sets an ID for each hand to distinguish easily in code.
         if (self.tag == "HandR")
@@ -66,9 +75,6 @@ public class StaffMain : MonoBehaviour
 
         if(isGrabbingStaff && triggerPress >= 0.5)
         {
-            ChargeStaff();
-        }else if(isGrabbingStaff && triggerPress <= 0.5 && staffCharge >= staffChargeRateMax)
-        {
             StaffShoot();
         }
 
@@ -84,6 +90,7 @@ public class StaffMain : MonoBehaviour
             }
         }
 
+
         //Scaling of staff
         if (scaleGateUp)
         {
@@ -91,13 +98,28 @@ public class StaffMain : MonoBehaviour
             {
                 staff.transform.localScale += new Vector3(growthSpeed, growthSpeed, growthSpeed) * Time.deltaTime;
 
+            } else if(staff.transform.localScale.x > scaleTarget.x && staff.transform.localScale.z > scaleTarget.z && staff.transform.localScale.y > scaleTarget.y)
+            {
+                scaleGateUp = false;
             }
 
         }
-        
-    }
 
-    //TO DO NEXT: MAKE STAFF SHOOT THINGS
+        //Countdown for basic attack
+        if(cooldownStart == true)
+        {
+            attackCooldown += Time.deltaTime;
+            canAttack = false;
+        }
+        
+        if(attackCooldown >= attackCooldownMax)
+        {
+            attackCooldown = 0;
+            canAttack = true;
+            Destroy(particleSpawned);
+            cooldownStart = false;
+        }
+    }
 
     private void OnTriggerEnter(Collider other)
     {
@@ -135,31 +157,56 @@ public class StaffMain : MonoBehaviour
     }
 
     void ReleaseStaff(GameObject staffObj)
-    {                
-        staffObj.transform.localScale = scaleStart;
-        scaleGateUp = false;
-        staff = null;
-        staffObj.transform.SetParent(dummy.transform);
-        staffObj.transform.position = dummy.transform.position;        
-        staffObj.transform.localEulerAngles = new Vector3(23, 0, 11);
-        isGrabbingStaff = false;
-
-    }
-
-    void ChargeStaff()
     {
-        if (staffCharge < staffChargeRateMax)
+        if (staff != null)
         {
-            staffCharge += staffChargeRate * Time.deltaTime;
+            staffObj.transform.localScale = scaleStart;
+            scaleGateUp = false;
+            staff = null;
+            staffObj.transform.SetParent(dummy.transform);
+            staffObj.transform.position = dummy.transform.position;
+            staffObj.transform.localEulerAngles = new Vector3(23, 0, 11);
+            isGrabbingStaff = false;
         }
+
     }
 
+   
     void StaffShoot()
     {
-        if(staffCharge >= staffChargeRateMax)
+        if (canAttack && isGrabbingStaff)
         {
-            //Instantiate(projectile, );
-            staffCharge = 0;
+            origin = spawnDummy.transform.position;
+            direction = spawnDummy.transform.forward;
+            particleSpawned = Instantiate(spellEffect, spawnDummy.transform.position, spawnDummy.transform.rotation);
+
+            RaycastHit hit;
+            print("Shooting");
+            if (Physics.SphereCast(origin, rayRadius, direction, out hit, maxDistance, layerMask, QueryTriggerInteraction.UseGlobal))
+            {
+                hitObject = hit.transform.gameObject;
+                hitDistance = hit.distance;
+                if (hit.transform.gameObject.tag == "Enemy")
+                {
+                    hit.transform.gameObject.GetComponent<AI_Health>().DealDamage(damage, damageType);
+                }
+
+            }
+            else
+            {
+                hitDistance = maxDistance;
+                hitObject = null;
+            }
+            cooldownStart = true;
         }
+        //Instantiates projectile
+        //Instantiate(projectile, spawnDummy.transform.position, Quaternion.identity);        
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Debug.DrawLine(origin, origin + direction * hitDistance);
+        Gizmos.DrawWireSphere(origin + direction * hitDistance, rayRadius);
     }
 }

@@ -4,4 +4,5 @@
     Fire,
     Water,
     Earth,
+    Standard,
 }

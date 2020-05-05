@@ -1712,7 +1712,6 @@ GameObject:
   - component: {fileID: 181972682214225631}
   - component: {fileID: 181972682214269083}
   - component: {fileID: 107791196}
-  - component: {fileID: 3584792627314303078}
   - component: {fileID: 7609344616052209210}
   m_Layer: 0
   m_Name: HandLeft
@@ -1809,24 +1808,6 @@ MonoBehaviour:
     type: 3}
   planeDummy: {fileID: 873486932}
   isCasting: 0
---- !u!114 &3584792627314303078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 181972682220801611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83c88ba7fca50cf45b957bf74fc5ff57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TargetDistance: 0
-  indicatorPrefab: {fileID: 3016571377786758865, guid: 2e141a54be058984892b53ac74093644,
-    type: 3}
-  targetObject: {fileID: 0}
-  dummy: {fileID: 1264294446}
-  isPulling: 0
 --- !u!114 &7609344616052209210
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1845,7 +1826,18 @@ MonoBehaviour:
   projectile: {fileID: 1121259390664520747, guid: 34d61de3fa3e17d4fa6928b128c7bc02,
     type: 3}
   spawnDummy: {fileID: 1609355031836608079}
-  staffCharge: 0
+  spellEffect: {fileID: 1111292484735420, guid: 75a8b5dd0b15bb14284ccdcac1e3a283,
+    type: 3}
+  collisionEffect: {fileID: 109338, guid: c882138d4987a9544b7c53f14ed0ad9c, type: 3}
+  attackCooldown: 0
+  attackCooldownMax: 1
+  damageType: 3
+  rayRadius: 0.2
+  maxDistance: 30
+  hitObject: {fileID: 0}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &181972682220804581
 GameObject:
   m_ObjectHideFlags: 0
@@ -4107,7 +4099,6 @@ GameObject:
   - component: {fileID: 2781384825017704388}
   - component: {fileID: 2781384825017648626}
   - component: {fileID: 1199114203}
-  - component: {fileID: 5054403888189618665}
   - component: {fileID: 7609344616052209209}
   m_Layer: 0
   m_Name: HandRight
@@ -4204,24 +4195,6 @@ MonoBehaviour:
     type: 3}
   planeDummy: {fileID: 291470580}
   isCasting: 0
---- !u!114 &5054403888189618665
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2781384825011586588}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83c88ba7fca50cf45b957bf74fc5ff57, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TargetDistance: 0
-  indicatorPrefab: {fileID: 3016571377786758865, guid: 2e141a54be058984892b53ac74093644,
-    type: 3}
-  targetObject: {fileID: 0}
-  dummy: {fileID: 6333549264743176219}
-  isPulling: 0
 --- !u!114 &7609344616052209209
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4240,7 +4213,18 @@ MonoBehaviour:
   projectile: {fileID: 1121259390664520747, guid: 34d61de3fa3e17d4fa6928b128c7bc02,
     type: 3}
   spawnDummy: {fileID: 1609355031836608079}
-  staffCharge: 0
+  spellEffect: {fileID: 1111292484735420, guid: 75a8b5dd0b15bb14284ccdcac1e3a283,
+    type: 3}
+  collisionEffect: {fileID: 109338, guid: c882138d4987a9544b7c53f14ed0ad9c, type: 3}
+  attackCooldown: 0
+  attackCooldownMax: 1
+  damageType: 3
+  rayRadius: 0.2
+  maxDistance: 30
+  hitObject: {fileID: 0}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &2781384825011590338
 GameObject:
   m_ObjectHideFlags: 0
