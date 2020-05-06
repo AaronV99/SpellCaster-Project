@@ -5,8 +5,6 @@ using UnityEngine;
 public class UI_CameraFol : MonoBehaviour
 {
 
-    // Testing purposes only (For KeyboardAndMouse Variant)
-
     public Transform cam;
 
 

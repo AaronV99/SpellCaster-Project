@@ -6,7 +6,6 @@ public class ItemReturn : MonoBehaviour
 {
 
     public Transform slot;
-    public MeshRenderer slotRenderer;
     private OVRGrabbable objGrabbed;
 
     // Start is called before the first frame update
@@ -20,13 +19,8 @@ public class ItemReturn : MonoBehaviour
         //checks to see if player is holding
         if (objGrabbed.isGrabbed == true)
         {
-            slotRenderer.enabled = true;
             this.gameObject.transform.parent = null;
             this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-        }
-        else
-        {
-            slotRenderer.enabled = false;
         }
     }
 
@@ -42,7 +36,6 @@ public class ItemReturn : MonoBehaviour
     IEnumerator ObjectReturn()
     {
         yield return new WaitForSeconds(1);
-        slotRenderer.enabled = false;
         gameObject.transform.position = slot.transform.position;
         gameObject.transform.rotation = slot.transform.rotation;
         gameObject.transform.parent = slot.transform;

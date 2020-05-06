@@ -8,7 +8,7 @@ public class TextAnimation : MonoBehaviour
 {
 
     private OVRGrabbable objGrabbed;
-    public  GameObject castleText;
+    public  GameObject castleArrowOne, castleArrowTwo, castleArrowThree;
     public GameObject statueText;
     //bool alreadyGrabbed;
     public bool isTouched = false;
@@ -24,16 +24,24 @@ public class TextAnimation : MonoBehaviour
     {
         if (objGrabbed.isGrabbed == true)
         {
-            castleText.SetActive(true);
+            castleArrowOne.SetActive(true);
+            castleArrowTwo.SetActive(true);
+            castleArrowThree.SetActive(true);
+
             statueText.SetActive(false);
+
             if(isTouched == true)
             {
-                castleText.SetActive(false);
+                castleArrowOne.SetActive(false);
+                castleArrowTwo.SetActive(false);
+                castleArrowThree.SetActive(false);
             }
         }
         else
         {
-            castleText.SetActive(false);
+            castleArrowOne.SetActive(false);
+            castleArrowTwo.SetActive(false);
+            castleArrowThree.SetActive(false);
         }
     }
 
@@ -43,7 +51,9 @@ public class TextAnimation : MonoBehaviour
         if (other.gameObject.tag == "Target")
         {
             isTouched = true;
-            castleText.SetActive(false);
+            castleArrowOne.SetActive(false);
+            castleArrowTwo.SetActive(false);
+            castleArrowThree.SetActive(false);
         }
     }
 }
