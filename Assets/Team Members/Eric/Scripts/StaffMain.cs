@@ -64,7 +64,7 @@ public class StaffMain : MonoBehaviour
                 break;
         }
 
-        if (!isGrabbingStaff && touchingStaff && gripPress >= 0.5)
+        if (!isGrabbingStaff && touchingStaff && gripPress >= 0.5 && staff != null)
         {
             GrabStaff();
         }
@@ -203,6 +203,7 @@ public class StaffMain : MonoBehaviour
         //Instantiate(projectile, spawnDummy.transform.position, Quaternion.identity);        
     }
 
+    //Debugging of Spherecast
     private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.red;
