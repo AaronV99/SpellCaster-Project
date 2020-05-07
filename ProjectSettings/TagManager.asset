@@ -20,6 +20,7 @@ TagManager:
   - Waypoint
   - Fire
   - Staff
+  - Book
   layers:
   - Default
   - TransparentFX

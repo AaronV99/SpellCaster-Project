@@ -8,7 +8,8 @@ public class StaffMain : MonoBehaviour
     Vector3 scaleStart = new Vector3(0.5f,0.5f,0.5f), scaleTarget = new Vector3(1,1,1);
 
     GameObject particleSpawned;
-    bool isGrabbingStaff, touchingStaff, scaleGateUp, cooldownStart, canAttack = true;
+    public bool isGrabbingStaff;
+    bool touchingStaff, scaleGateUp, cooldownStart, canAttack = true;
     float gripPress, triggerPress, growthSpeed = 1;
     public float attackCooldown, attackCooldownMax;
     int HandID, damage;
@@ -139,20 +140,23 @@ public class StaffMain : MonoBehaviour
     }
 
     void GrabStaff()
-    {        
-        isGrabbingStaff = true;
-        scaleGateUp = true;
-        staff.transform.SetParent(self.transform);
-        staff.transform.position = self.transform.position;
-        if (self.tag == "HandR")
+    {
+        if (self.gameObject.GetComponent<BookMain>().isGrabbingBook != true)
         {
-            staff.transform.localEulerAngles = new Vector3(self.transform.rotation.x, self.transform.rotation.y, 90);
+            isGrabbingStaff = true;
+            scaleGateUp = true;
+            staff.transform.SetParent(self.transform);
+            staff.transform.position = self.transform.position;
+            if (self.tag == "HandR")
+            {
+                staff.transform.localEulerAngles = new Vector3(self.transform.rotation.x, self.transform.rotation.y, 90);
 
-        }
-        else if (self.tag == "HandL")
-        {
-            staff.transform.localEulerAngles = new Vector3(self.transform.rotation.x, self.transform.rotation.y, -90);
+            }
+            else if (self.tag == "HandL")
+            {
+                staff.transform.localEulerAngles = new Vector3(self.transform.rotation.x, self.transform.rotation.y, -90);
 
+            }
         }
     }
 
