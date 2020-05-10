@@ -10,13 +10,21 @@ public class ButtonInteract : MonoBehaviour {
     public Button aButton;
     public float inputDelay = 0.3f;
     public bool inputDelayed = false;
-
+    float rightGripPressed;
+    float leftGripPressed;
 
 
     // Use this for initialization
     void Start ()
     {
         aButton = GetComponent<Button>();
+   
+    }
+
+    void Update()
+    {
+        rightGripPressed = OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.RTouch);
+        leftGripPressed = OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, OVRInput.Controller.LTouch);
     }
 
 
@@ -33,11 +41,14 @@ public class ButtonInteract : MonoBehaviour {
 
     void Interact()
     {
-        if (!inputDelayed)
+        if (rightGripPressed >= 0.7f || leftGripPressed >= 0.7f)
         {
-            GetComponent<Image>().color = Color.green;
-            aButton.onClick.Invoke();
-            SetInputDelay();
+            if (!inputDelayed)
+            {
+                GetComponent<Image>().color = Color.green;
+                aButton.onClick.Invoke();
+                SetInputDelay();
+            }
         }
     }
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class ChangeScene : MonoBehaviour
 {
@@ -11,7 +12,7 @@ public class ChangeScene : MonoBehaviour
     [SerializeField] bool isTouching;
     [SerializeField] private float time = 3f;
 
-    public Text counterText;
+    public TextMeshProUGUI counterText;
     public GameObject textCanvas;
     public Animator transitionAnim;
     //public Animator textAnim;
@@ -45,21 +46,17 @@ public class ChangeScene : MonoBehaviour
     {
         isTouching = true;
 
-            
-            if (other.gameObject.tag == "Character")
-            {
+        if (other.gameObject.tag == "Character")
+        {
             textCanvas.SetActive(true);
-            //textAnim.SetTrigger("change");
+
             counterText.text = time.ToString("f0");
 
             if (time <= 0)
-                {
+            {
                 StartCoroutine(LoadScene());
-                }
-             }
-          
-        
-        
+            }
+        }          
     }
 
     void OnTriggerExit(Collider other)
