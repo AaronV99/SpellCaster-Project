@@ -10,9 +10,6 @@ public class healthScript : MonoBehaviour
 
     public Slider slider;
 
-    //public bool DestroyAtZero = false;
-
-    //public GameObject gameOverUI;
 
     void Start()
     {
@@ -24,7 +21,6 @@ public class healthScript : MonoBehaviour
         if(health <= 0 )
         {
             Destroy(gameObject);
-            //GameOver();
         }
     }
 

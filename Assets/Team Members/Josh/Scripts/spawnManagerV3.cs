@@ -23,6 +23,7 @@ public class spawnManagerV3 : MonoBehaviour
     public Text enemiesRemainingText;
     public Text waveCountdownText;
 
+    private GameOver gameOver;
 
     public float timeBetweenWaves = 5f;
     private float countdown = 5f;
@@ -48,6 +49,8 @@ public class spawnManagerV3 : MonoBehaviour
     {
         currentState = State.Start;
         waveCountdownText.enabled = false;
+
+        gameOver = GetComponent<GameOver>();
     }
 
     void Update()
@@ -133,7 +136,7 @@ public class spawnManagerV3 : MonoBehaviour
             //if the gate is destroyed - Game over - stop spawning enemies
             if (gate == null)
             {
-                this.enabled = false;
+                gameOver.changeScene();
                 StopAllCoroutines();
             }
             //check if enemiesalive is less than or equals to boss spawn variable and boss spawned bool
@@ -202,7 +205,7 @@ public class spawnManagerV3 : MonoBehaviour
         currentState = State.Wave;
         enemiesSpawned = 0;
         StartCoroutine(SpawnWave());
-        startCanvas.SetActive(false);
+        Destroy(startCanvas);
     }
 
     //public void NextWave()

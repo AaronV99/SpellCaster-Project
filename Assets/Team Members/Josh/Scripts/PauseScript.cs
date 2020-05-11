@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class PauseScript : MonoBehaviour {
 
-    public GameObject aMenu;
+    public GameObject pauseMenu;
+    public GameObject startCanvas;
     public bool isOpen;
     public float inputDelay = 0.5f;
     public bool inputDelayed = false;
@@ -18,11 +19,20 @@ public class PauseScript : MonoBehaviour {
 	void Update () {
 		if(isOpen)
         {
-            aMenu.SetActive(true);
+            pauseMenu.SetActive(true);
+            if(startCanvas != null)
+            {
+                startCanvas.SetActive(false);
+            }
         }
         else
         {
-            aMenu.SetActive(false);
+            pauseMenu.SetActive(false);
+
+            if (startCanvas != null)
+            {
+                startCanvas.SetActive(true);
+            }
         }
 	}
 

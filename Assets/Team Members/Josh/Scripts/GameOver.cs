@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneButton : MonoBehaviour
+public class GameOver : MonoBehaviour
 {
     public Animator transitionAnim;
     [SerializeField] private string sceneName;
@@ -21,8 +21,9 @@ public class SceneButton : MonoBehaviour
 
     IEnumerator LoadScene()
     {
+        yield return new WaitForSeconds(2f);
         transitionAnim.SetTrigger("end");
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(sceneName);
     }
 }
