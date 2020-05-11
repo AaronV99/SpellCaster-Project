@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BookMain : MonoBehaviour
 {
-    public GameObject self, book, dummy;
+    public GameObject self, book, dummy, bookClosed, bookOpen;
     public bool isGrabbingBook;
     bool touchingBook, scaleGateUp;
     Vector3 scaleStart = new Vector3(0.3f, 0.3f, 0.3f), scaleTarget = new Vector3(0.5f, 0.5f, 0.5f);
@@ -92,10 +92,12 @@ public class BookMain : MonoBehaviour
             scaleGateUp = true;
             book.transform.SetParent(self.transform);
             book.transform.position = self.transform.position;
+            bookClosed.SetActive(false);
+            bookOpen.SetActive(true);
             print("grabbing book");
             if (self.tag == "HandR")
             {
-                book.transform.localEulerAngles = new Vector3(self.transform.rotation.x, self.transform.rotation.y, 90);
+                book.transform.localEulerAngles = new Vector3(180, self.transform.rotation.y, 90);
 
             }
             else if (self.tag == "HandL")
@@ -116,6 +118,8 @@ public class BookMain : MonoBehaviour
             bookObj.transform.SetParent(dummy.transform);
             bookObj.transform.position = dummy.transform.position;
             bookObj.transform.localEulerAngles = new Vector3(21, 0, -11);
+            bookClosed.SetActive(true);
+            bookOpen.SetActive(false);
             isGrabbingBook = false;
         }
     }
