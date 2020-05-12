@@ -1765,6 +1765,7 @@ Transform:
   - {fileID: 1557069299977619695}
   - {fileID: 1557069298785962812}
   - {fileID: 1557069300470072441}
+  - {fileID: 8687186014992820720}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1909,21 +1910,23 @@ MonoBehaviour:
   - {fileID: 1557069298785962808}
   - {fileID: 1557069300470072437}
   sequence: 
+  self: {fileID: 1557069298998909202}
+  castingDummy: {fileID: 3361288261655293626}
   cubeCompletion: 0
-  testOneCompletion: 0
-  testTwoCompletion: 0
-  testThreeCompletion: 0
+  fireBallCompletion: 0
+  iceSpikeCompletion: 0
+  earthWallCompletion: 0
   summonCubeSpell: 040000000d000000160000001f0000002400000025000000260000002700000028000000290000002a0000002b0000002c000000310000003a000000430000004c000000
-  testOne: 00000000080000000a0000001000000014000000180000001e00000020000000280000003000000032000000380000003c00000040000000460000004800000050000000
-  testTwo: 13000000190000001d0000002100000027000000290000002f00000033000000370000003d000000
-  testThree: 03000000050000000c0000000e000000150000001600000017000000390000003a0000003b00000042000000440000004b0000004d000000
+  fireBall: 00000000080000000a0000001000000014000000180000001e00000020000000280000003000000032000000380000003c00000040000000460000004800000050000000
+  iceSpike: 040000000d000000160000001f0000002400000025000000260000002700000028000000290000002a0000002b0000002c000000310000003a000000430000004c000000
+  earthWall: 03000000050000000c0000000e000000150000001600000017000000390000003a0000003b00000042000000440000004b0000004d000000
   testingCube: {fileID: 5930370147925056997, guid: abb2a68147805c44db8d13259ad80603,
     type: 3}
-  testingOne: {fileID: 5110683252550807673, guid: 0ccdcb8c577d064438b571acac093142,
+  fireBallPrefab: {fileID: 5110683252550807673, guid: 0ccdcb8c577d064438b571acac093142,
     type: 3}
-  testingTwo: {fileID: 8011429823441996598, guid: bc3688be4804d014ea7314e89cda1558,
+  earthWallPrefab: {fileID: 8011429823441996598, guid: bc3688be4804d014ea7314e89cda1558,
     type: 3}
-  testingThree: {fileID: 5160151474045595982, guid: b385994479d21834d9a9b9e1242b1274,
+  iceSpikePrefab: {fileID: 5160151474045595982, guid: b385994479d21834d9a9b9e1242b1274,
     type: 3}
 --- !u!114 &2663349009578227393
 MonoBehaviour:
@@ -10575,6 +10578,37 @@ MonoBehaviour:
   nodeClear: 1
   LineRendererRef: {fileID: 4728333550578075428}
   nodeID: 0
+--- !u!1 &3361288261655293626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8687186014992820720}
+  m_Layer: 0
+  m_Name: PlaneDummy
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8687186014992820720
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3361288261655293626}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: -2.12, z: 0}
+  m_LocalScale: {x: 100, y: 100.00005, z: 100.00005}
+  m_Children:
+  - {fileID: 2807849529903791490}
+  m_Father: {fileID: 1557069298998909206}
+  m_RootOrder: 83
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!1 &4728333550578075428
 GameObject:
   m_ObjectHideFlags: 0
@@ -10808,3 +10842,95 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+--- !u!1 &7659240159138117397
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2807849529903791490}
+  - component: {fileID: 7377626926434887327}
+  - component: {fileID: 8505746079450831888}
+  - component: {fileID: 2126375446702329026}
+  m_Layer: 0
+  m_Name: Cube
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &2807849529903791490
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7659240159138117397}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.01, y: 0.01, z: 0.02}
+  m_Children: []
+  m_Father: {fileID: 8687186014992820720}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &7377626926434887327
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7659240159138117397}
+  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!23 &8505746079450831888
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7659240159138117397}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+--- !u!65 &2126375446702329026
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7659240159138117397}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}

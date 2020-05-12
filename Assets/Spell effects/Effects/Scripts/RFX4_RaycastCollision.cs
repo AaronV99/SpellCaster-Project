@@ -98,6 +98,8 @@ public class RFX4_RaycastCollision : MonoBehaviour
 
                         CollidedInstances.Add(instance);
 
+                        
+
                         if (HUE > -0.9f) RFX4_ColorHelper.ChangeObjectColorByHUE(instance, HUE);
                     
                         if (!IsWorldSpace)
@@ -106,6 +108,13 @@ public class RFX4_RaycastCollision : MonoBehaviour
                             instance.transform.LookAt(raycastHit.point + raycastHit.normal);
                         if (DestroyTime > 0.0001f)
                             Destroy(instance, DestroyTime);
+
+
+                        //Added by Eric for IceSpike;
+                        if (GetComponentInParent<IceSpike>() != null)
+                        {
+                            GetComponentInParent<IceSpike>().IceSpikeSpell(raycastHit.transform.position);
+                        }
                     }
                 }
             else

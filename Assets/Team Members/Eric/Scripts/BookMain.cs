@@ -60,14 +60,17 @@ public class BookMain : MonoBehaviour
         //Scaling of book
         if (scaleGateUp)
         {
-            if (book.transform.localScale.x < scaleTarget.x && book.transform.localScale.z < scaleTarget.z && book.transform.localScale.y < scaleTarget.y)
+            if (book != null)
             {
-                book.transform.localScale += new Vector3(growthSpeed, growthSpeed, growthSpeed) * Time.deltaTime;
+                if (book.transform.localScale.x < scaleTarget.x && book.transform.localScale.z < scaleTarget.z && book.transform.localScale.y < scaleTarget.y)
+                {
+                    book.transform.localScale += new Vector3(growthSpeed, growthSpeed, growthSpeed) * Time.deltaTime;
 
-            }
-            else if (book.transform.localScale.x > scaleTarget.x && book.transform.localScale.z > scaleTarget.z && book.transform.localScale.y > scaleTarget.y)
-            {
-                scaleGateUp = false;
+                }
+                else if (book.transform.localScale.x > scaleTarget.x && book.transform.localScale.z > scaleTarget.z && book.transform.localScale.y > scaleTarget.y)
+                {
+                    scaleGateUp = false;
+                }
             }
 
         }
