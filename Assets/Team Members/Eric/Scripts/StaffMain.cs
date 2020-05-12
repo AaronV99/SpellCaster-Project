@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StaffMain : MonoBehaviour
 {
-    public GameObject self, staff, dummy, projectile, spawnDummy, spellEffect, collisionEffect;
+    public GameObject self, staff, dummy, projectile, spawnDummy, spellEffect;
     Vector3 scaleStart = new Vector3(0.5f,0.5f,0.5f), scaleTarget = new Vector3(1,1,1);
 
     GameObject particleSpawned;
@@ -95,13 +95,17 @@ public class StaffMain : MonoBehaviour
         //Scaling of staff
         if (scaleGateUp)
         {
-            if(staff.transform.localScale.x < scaleTarget.x && staff.transform.localScale.z < scaleTarget.z && staff.transform.localScale.y < scaleTarget.y)
+            if (staff != null)
             {
-                staff.transform.localScale += new Vector3(growthSpeed, growthSpeed, growthSpeed) * Time.deltaTime;
+                if (staff.transform.localScale.x < scaleTarget.x && staff.transform.localScale.z < scaleTarget.z && staff.transform.localScale.y < scaleTarget.y)
+                {
+                    staff.transform.localScale += new Vector3(growthSpeed, growthSpeed, growthSpeed) * Time.deltaTime;
 
-            } else if(staff.transform.localScale.x > scaleTarget.x && staff.transform.localScale.z > scaleTarget.z && staff.transform.localScale.y > scaleTarget.y)
-            {
-                scaleGateUp = false;
+                }
+                else if (staff.transform.localScale.x > scaleTarget.x && staff.transform.localScale.z > scaleTarget.z && staff.transform.localScale.y > scaleTarget.y)
+                {
+                    scaleGateUp = false;
+                }
             }
 
         }

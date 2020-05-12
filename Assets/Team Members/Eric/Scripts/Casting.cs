@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.UI;
 using UnityEngine;
 
 public class Casting : MonoBehaviour
@@ -7,32 +8,21 @@ public class Casting : MonoBehaviour
     public GameObject[] node;
     public List<int> sequence = new List<int>();
     bool cast;
+    public GameObject self, castingDummy;
+    GameObject spell;
 
     //Testing Variables
-    public int cubeCompletion, testOneCompletion, testTwoCompletion, testThreeCompletion;
+    public int cubeCompletion, fireBallCompletion, iceSpikeCompletion, earthWallCompletion;
     public List<int> summonCubeSpell = new List<int>();
-    public List<int> testOne = new List<int>();
-    public List<int> testTwo = new List<int>();
-    public List<int> testThree = new List<int>();
+    public List<int> fireBall = new List<int>();
+    public List<int> iceSpike = new List<int>();
+    public List<int> earthWall = new List<int>();
 
-    public GameObject testingCube, testingOne, testingTwo, testingThree;
+    public GameObject testingCube, fireBallPrefab, earthWallPrefab, iceSpikePrefab;
 
     //End of Testing Variables;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //TestingPurposes
-
-        //TestingPurposes
-    }
-
+   
     public void AddToSequence(string nodeName)
     {
 
@@ -52,24 +42,24 @@ public class Casting : MonoBehaviour
         for(int i = 0; i < sequence.Count; i++)
         {
             //Testing spell 0
-            if (sequence.Contains(nodeID) && summonCubeSpell.Contains(nodeID)) //Testing spell 0
+            //if (sequence.Contains(nodeID) && summonCubeSpell.Contains(nodeID)) //Testing spell 0
+            //{
+            //    cubeCompletion++;
+            //}
+
+            if (sequence.Contains(nodeID) && fireBall.Contains(nodeID)) //Fireball
             {
-                cubeCompletion++; 
-            }
-            
-            if (sequence.Contains(nodeID) && testOne.Contains(nodeID)) //Testing spell 1
-            {
-                testOneCompletion++;
+                fireBallCompletion++;
             }
 
-            if (sequence.Contains(nodeID) && testTwo.Contains(nodeID)) //Testing spell 2
+            if (sequence.Contains(nodeID) && iceSpike.Contains(nodeID)) //Ice Spike
             {
-                testTwoCompletion++;
+                iceSpikeCompletion++;
             }
 
-            if (sequence.Contains(nodeID) && testThree.Contains(nodeID)) //Testing spell 3
+            if (sequence.Contains(nodeID) && earthWall.Contains(nodeID)) //Earth Wall
             {
-                testThreeCompletion++;
+                earthWallCompletion++;
             }
         }
         CheckCompletion();
@@ -79,7 +69,7 @@ public class Casting : MonoBehaviour
     public void CheckCompletion()
     {
         //Testing Purposes
-        if (cubeCompletion > testOneCompletion && cubeCompletion > testTwoCompletion && cubeCompletion > testThreeCompletion && !cast)
+        if (cubeCompletion > fireBallCompletion && cubeCompletion > iceSpikeCompletion && cubeCompletion > earthWallCompletion && !cast)
         {
             float n = 0.7f * summonCubeSpell.Count;
 
@@ -87,62 +77,64 @@ public class Casting : MonoBehaviour
             {
                 CastSpell("SpawnCube");
                 cast = true;
-            }
-        }
-        else if (testOneCompletion > cubeCompletion && testOneCompletion > testTwoCompletion && testOneCompletion > testThreeCompletion && !cast)
+            }//Testing Purposes
+        }        
+        else if (fireBallCompletion > cubeCompletion && fireBallCompletion > iceSpikeCompletion && fireBallCompletion > earthWallCompletion && !cast)
         {
-            float n = 0.7f * testOne.Count;
-            if (testOneCompletion >= n)
+            float n = 0.7f * fireBall.Count;
+            if (fireBallCompletion >= n)
             {
-                CastSpell("TestOne");
+                CastSpell("FireBall");
                 cast = true;
             }
         }
-        else if (testTwoCompletion > cubeCompletion && testTwoCompletion > testOneCompletion && testTwoCompletion > testThreeCompletion && !cast)
+        else if (iceSpikeCompletion > cubeCompletion && iceSpikeCompletion > fireBallCompletion && iceSpikeCompletion > earthWallCompletion && !cast)
         {
-            float n = 0.7f * testTwo.Count;
-            if (testTwoCompletion >= n)
+            float n = 0.7f * iceSpike.Count;
+            if (iceSpikeCompletion >= n)
             {
-                CastSpell("TestTwo");
+                CastSpell("IceSpike");
                 cast = true;
             }
         }
-        else if (testThreeCompletion > cubeCompletion && testThreeCompletion > testOneCompletion && testThreeCompletion > testTwoCompletion && !cast)
+        else if (earthWallCompletion > cubeCompletion && earthWallCompletion > fireBallCompletion && earthWallCompletion > iceSpikeCompletion && !cast)
         {
-            float n = 0.7f * testThree.Count;
-            if (testThreeCompletion >= n)
+            float n = 0.7f * earthWall.Count;
+            if (earthWallCompletion >= n)
             {
-                CastSpell("TestThree");
+                CastSpell("EarthWall");
                 cast = true;
             }
         }
-        //Testing Purposes
 
     }
     public void CastSpell(string spellName)
     {
-        if(spellName == "SpawnCube")
+        //Testing
+        //if(spellName == "SpawnCube")
+        //{
+            
+        //    Instantiate(testingCube, gameObject.transform.position, selfRotation);
+        //    print("Spawned a cube");
+        //}
+        //Testing
+
+        if(spellName == "FireBall")
         {
-            Instantiate(testingCube, gameObject.transform.position, Quaternion.identity);
-            print("Spawned a cube");
+            spell = Instantiate(fireBallPrefab, castingDummy.transform.position, castingDummy.transform.rotation) as GameObject;
+            print("Spawned a FireBall");
         }
 
-        if(spellName == "TestOne")
+        if (spellName == "EarthWall")
         {
-            Instantiate(testingOne, gameObject.transform.position, Quaternion.identity);
-            print("Spawned a One");
+            spell = Instantiate(earthWallPrefab, castingDummy.transform.position, castingDummy.transform.rotation) as GameObject;
+            print("Spawned a EarthWall");
         }
 
-        if (spellName == "TestTwo")
+        if (spellName == "IceSpike")
         {
-            Instantiate(testingTwo, gameObject.transform.position, Quaternion.identity);
-            print("Spawned a Two");
-        }
-
-        if (spellName == "TestThree")
-        {
-            Instantiate(testingThree, gameObject.transform.position, Quaternion.identity);
-            print("Spawned a Three");
+            spell = Instantiate(iceSpikePrefab, castingDummy.transform.position, castingDummy.transform.rotation) as GameObject;
+            print("Spawned a IceSpike");
         }
 
     }

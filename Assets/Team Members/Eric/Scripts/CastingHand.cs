@@ -8,7 +8,7 @@ public class CastingHand : MonoBehaviour
     public GameObject self, castPrefab, planeDummy;
     GameObject castingPlane;
     int HandID;
-    float gripPress, resetTImer = 0.5f;
+    float gripPress, resetTimer = 0.5f;
     bool castButtonPress, triggerTouch;
     static bool castButtonPress_all;
     public bool isCasting;
@@ -82,22 +82,10 @@ public class CastingHand : MonoBehaviour
                 break;
         }
        
+        
+        resetTimer -= Time.deltaTime;
 
-        //if (OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.LTouch) || OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.RTouch))
-        //{
-        //    if (castingPlane == null)
-        //    {
-        //        castButtonPress_all = true;
-        //        castingPlane = Instantiate(castPrefab, self.transform.position, self.transform.rotation) as GameObject;
-        //    }
-        //}else if(!OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.LTouch) || !OVRInput.Get(OVRInput.Button.One, OVRInput.Controller.RTouch))
-        //{
-        //    castButtonPress_all = false;
-        //}
-
-        resetTImer -= Time.deltaTime;
-
-        if (resetTImer <= 0f)
+        if (resetTimer <= 0f)
         {
             if (!isCasting && castingPlane != null)
             {
@@ -110,7 +98,7 @@ public class CastingHand : MonoBehaviour
 
             }
             //print("Timer Reset");
-            resetTImer = 0.5f;
+            resetTimer = 0.5f;
         }
 
         ////From previous telekinesis mechanic. Discarted

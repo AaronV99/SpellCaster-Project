@@ -85,6 +85,7 @@ public class RFX4_PhysicsMotion : MonoBehaviour
 
     void OnCollisionEnter(Collision collision)
     {
+
         if (isCollided && !effectSettings.UseCollisionDetection) return;
         foreach (ContactPoint contact in collision.contacts)
         {
@@ -104,6 +105,8 @@ public class RFX4_PhysicsMotion : MonoBehaviour
                     targetAnchor.transform.position = contact.point;
                     targetAnchor.transform.rotation = transform.rotation;
                     //targetAnchor.transform.LookAt(contact.normal);
+
+                    
                 }
                 
             }
@@ -120,6 +123,11 @@ public class RFX4_PhysicsMotion : MonoBehaviour
                 if (LookAtNormal) instance.transform.LookAt(contact.point + contact.normal);
                 else instance.transform.rotation = transform.rotation;
                 if (!CollisionEffectInWorldSpace) instance.transform.parent = contact.otherCollider.transform.parent;
+
+                //Added by Eric. Working with collision to cause spell effect
+                GameObject.FindGameObjectWithTag("Fireball").GetComponent<FireBall>().ExplodeFireBall(collision.transform.position);
+
+
                 Destroy(instance, CollisionEffectDestroyAfter);
             }
         }

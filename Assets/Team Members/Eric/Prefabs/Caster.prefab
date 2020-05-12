@@ -8424,6 +8424,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2781384825011883538}
     m_Modifications:
+    - target: {fileID: 6299758658959058351, guid: 5a0a76440a9e7d4478507962c94b5923,
+        type: 3}
+      propertyPath: m_Name
+      value: FinalSorcererRightHand
+      objectReference: {fileID: 0}
     - target: {fileID: 7004897078470301628, guid: 5a0a76440a9e7d4478507962c94b5923,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8478,11 +8483,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6299758658959058351, guid: 5a0a76440a9e7d4478507962c94b5923,
-        type: 3}
-      propertyPath: m_Name
-      value: FinalSorcererRightHand
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a0a76440a9e7d4478507962c94b5923, type: 3}
@@ -8613,6 +8613,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2189520614924043267}
     m_Modifications:
+    - target: {fileID: 5520784010994849220, guid: 6afa6fd8c1c54d440add4a1cd7c5362a,
+        type: 3}
+      propertyPath: m_Name
+      value: TransitionSceneCanvas
+      objectReference: {fileID: 0}
     - target: {fileID: 5520784010994849223, guid: 6afa6fd8c1c54d440add4a1cd7c5362a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -8717,11 +8722,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 5520784010994849220, guid: 6afa6fd8c1c54d440add4a1cd7c5362a,
-        type: 3}
-      propertyPath: m_Name
-      value: TransitionSceneCanvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6afa6fd8c1c54d440add4a1cd7c5362a, type: 3}

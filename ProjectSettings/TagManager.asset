@@ -21,6 +21,8 @@ TagManager:
   - Fire
   - Staff
   - Book
+  - Fireball
+  - CastingPlane
   layers:
   - Default
   - TransparentFX
