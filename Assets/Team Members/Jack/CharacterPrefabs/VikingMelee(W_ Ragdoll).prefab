@@ -3031,7 +3031,7 @@ MonoBehaviour:
   targetLayer:
     serializedVersion: 2
     m_Bits: 512
-  axeDamage: 3
+  axeDamage: 1
 --- !u!114 &6750509389108749050
 MonoBehaviour:
   m_ObjectHideFlags: 0

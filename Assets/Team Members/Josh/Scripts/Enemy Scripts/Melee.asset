@@ -14,10 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resistances:
   - damageType: 0
-    percentDamageToTake: 100
+    percentDamageToTake: 20
   - damageType: 1
-    percentDamageToTake: 100
+    percentDamageToTake: 50
   - damageType: 2
-    percentDamageToTake: 100
+    percentDamageToTake: 80
   - damageType: 3
     percentDamageToTake: 100
