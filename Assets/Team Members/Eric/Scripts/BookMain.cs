@@ -89,7 +89,7 @@ public class BookMain : MonoBehaviour
     }
     void GrabBook()
     {
-        if (self.gameObject.GetComponent<StaffMain>().isGrabbingStaff != true)
+        if (self.gameObject.GetComponent<StaffMain>().isGrabbingStaff != true && book != null)
         {
             isGrabbingBook = true;
             scaleGateUp = true;
@@ -131,7 +131,7 @@ public class BookMain : MonoBehaviour
         if(other.tag == "Book")
         {
             touchingBook = true;
-            book = GameObject.FindGameObjectWithTag("Book");
+            book = other.gameObject;
         }
     }
 

@@ -140,6 +140,10 @@ public class StaffMain : MonoBehaviour
         if (other.tag == "Staff")
         {
             touchingStaff = false;
+            if (staff != null && isGrabbingStaff == false)
+            {
+                ReleaseStaff(staff);
+            }
         }
     }
 
